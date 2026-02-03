@@ -38,6 +38,8 @@ body {
   max-height: 300;
   min-height: 300;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse; 
 }
 
 .message-right {

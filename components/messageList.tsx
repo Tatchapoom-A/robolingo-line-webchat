@@ -22,7 +22,7 @@ const Message: React.FC<MessageProps> = ({ text, sender }) => {
     return(
         <Box className={`message-${className}`}>
             <Box className={`text-message-${className}`}>
-                <Typography color='black'>{text}</Typography>
+                <Typography id="" color='black'>{text}</Typography>
             </Box>
         </Box>
     )
@@ -33,7 +33,7 @@ const MessageList: React.FC<MessageListProps> = (prop) => {
     const [messages, setMessages] = useState<MessageData[]>(prop.chatHistory);
 
     return (
-        <div className="message-list-container">
+        <div id="message-list" className="message-list-container">
             {messages.map((message) => (
                 <Message
                     key={message.id}
