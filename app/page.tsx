@@ -1,65 +1,136 @@
+"use client"
+import MessageList, { MessageData } from "@/components/messageList";
 import Image from "next/image";
+import Box from '@mui/material/Box';
+import { Button, Container, TextareaAutosize, TextField, Typography } from "@mui/material";
+import { useContext, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { lineService } from "./api/send-message";
+import { Formik, FormikProps } from "formik";
 
 export default function Home() {
+  // const formik = useRef<FormikProps<any>>(null);
+  
+  const [accessTokenInput, setAccessTokenInput] = useState("");
+  const [accessToken, setAccessToken] = useState("");
+
+  const [disableChat, setDisableChat] = useState(true);
+  const [disableAccessToken, setDisableAccessToken] = useState(false);
+
+  const [chatHistory, setChatHistory] = useState<MessageData[]>([
+    { id: 1, text: 'Hi there!', sender: 'other' },
+    { id: 2, text: 'Hii!', sender: 'user' },
+    { id: 3, text: 'How are you?', sender: 'user' },
+    { id: 4, text: 'Hi there!', sender: 'other' },
+    { id: 5, text: 'Hii!', sender: 'user' },
+    { id: 6, text: 'How are you?', sender: 'user' },
+    { id: 7, text: 'How are you?', sender: 'user' },
+    { id: 8, text: 'Hi there!', sender: 'other' },
+    { id: 9, text: 'Hii!', sender: 'user' },
+    { id: 0, text: 'How are youHow are you How are youHow are you?', sender: 'user' },
+  ]);
+
+  const saveAccessToken = (token: string) => {
+    setAccessToken(token);
+    setDisableChat(false);
+    setDisableAccessToken(true);
+  };
+
+  // const { data, isLoading, isError, isSuccess } = useQuery({
+  //       queryKey: [`message-id-`],
+  //       queryFn: () =>
+  //           lineService.sendMessage("",""),
+  //       retry: 3,
+  //   });
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    // <Formik
+    //   innerRef={formik}
+    //         initialValues={defaultEventTopic}
+    //         validationSchema={SignupSchema}
+    //         onSubmit={async (values, { setSubmitting }) => {
+    //             values.name = values.name?.trim();
+    //             await mutateAsync(values);
+    //             setSubmitting(false);
+    //         }}
+    // >
+      
+    // </Formik>
+    <Box className="background">
+      <Typography
+        variant="h3"
+        sx={{
+          color: "white",
+          paddingTop: 5
+        }}
+      >
+        Web Chat
+      </Typography>
+
+      <Box sx={{
+        display: "flex",
+        width: "300px",
+        backgroundColor: "white",
+        marginBottom: 2,
+        borderRadius: 1,
+        pointerEvents: `${disableAccessToken === true ? "none" : "visible"}`,
+        opacity: `${disableAccessToken === true ? 0.5 : 1}`
+      }}>
+        <TextField
+          id="filled-basic"
+          sx={{ width: 300 }}
+          label="Channel Access Token"
+          variant="filled"
+          onChange={(e: any) => {
+            setAccessTokenInput(e.target.value);
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <Button
+          variant="contained"
+          onClick={() => {
+            saveAccessToken(accessTokenInput);
+          }}
+        >
+          Save
+        </Button>
+      </Box>
+
+      <Container
+        sx={{
+          width: "300px",
+          backgroundColor: "white",
+          borderRadius: 1,
+          pointerEvents: `${disableChat === true ? "none" : "visible"}`,
+          opacity: `${disableChat === true ? 0.5 : 1}`
+        }}
+        disableGutters={true}
+      >
+        <MessageList chatHistory={chatHistory} />
+
+        <Box sx={{
+          display: "flex",
+          width: "100%",
+          padding: 0.5,
+        }}>
+          <TextareaAutosize
+            maxRows={4}
+            placeholder="Aa"
+
+            style={{
+              borderRadius: 2, height: 70, width: 300, backgroundColor: "gray", marginRight: 3
+            }}
+          />
+          <Button
+            variant="contained"
+            sx={{ maxHeight: 50 }}
+            onClick={() => {
+              const result = lineService.sendMessage("","")
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            Send
+          </Button>
+        </Box>
+      </Container>
+    </Box>
   );
 }
