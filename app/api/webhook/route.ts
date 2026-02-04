@@ -4,7 +4,11 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   console.log('Webhook POST called');
-  console.log(request.body);
+
+  const rawBody = await request.text();
+  console.log(rawBody);
+
+
   // if (request?.type === 'message' && request.message.type === 'text') {
   //   messages.push({
   //     from: 'line',
