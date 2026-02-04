@@ -7,15 +7,15 @@ export async function POST(request: Request) {
 
   const rawBody = await request.text();
   console.log(rawBody);
+  const event = JSON.parse(rawBody).events[0];
 
-
-  // if (request?.type === 'message' && request.message.type === 'text') {
-  //   messages.push({
-  //     from: 'line',
-  //     text: event.message.text,
-  //     createdAt: Date.now(),
-  //   });
-  // }
+  if (event?.type === 'message' && event.message.type === 'text') {
+    messages.push({
+      from: 'line',
+      text: event.message.text,
+      createdAt: Date.now(),
+    });
+  }
   return NextResponse.json({ ok: true });
 }
 
