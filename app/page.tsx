@@ -17,16 +17,16 @@ export default function Home() {
   const [disableUserId, setDisableUserId] = useState(false);
 
   const [chatHistory, setChatHistory] = useState<MessageData[]>([
-    // { id: 9, text: 'ได้ครับ ส่งยอดมาได้เลย', sender: 'user' },
-    // { id: 8, text: 'สรุปยอดให้เลยไหมคะ?', sender: 'other' },
-    // { id: 7, text: 'โอเคครับ รับ 1 ที่ครับ', sender: 'user' },
-    // { id: 6, text: 'ประมาณ 1-2 วันค่ะ', sender: 'other' },
-    // { id: 5, text: 'จัดส่งกี่วันถึงครับ?', sender: 'user' },
-    // { id: 4, text: 'ยังมีของพร้อมส่งเลยค่ะ', sender: 'other' },
-    // { id: 3, text: 'เช็กให้สักครู่นะคะ', sender: 'other' },
-    // { id: 2, text: 'ตัวสีดำยังมีของไหมครับ?', sender: 'user' },
-    // { id: 1, text: 'หวัดดีค่ะ สนใจตัวไหนคะ?', sender: 'other' },
-    // { id: 0, text: 'หวัดดีครับ สอบถามเรื่องของหน่อย', sender: 'user' },
+    { id: 9, text: 'ได้ครับ ส่งยอดมาได้เลย', sender: 'user' },
+    { id: 8, text: 'สรุปยอดให้เลยไหมคะ?', sender: 'other' },
+    { id: 7, text: 'โอเคครับ รับ 1 ที่ครับ', sender: 'user' },
+    { id: 6, text: 'ประมาณ 1-2 วันค่ะ', sender: 'other' },
+    { id: 5, text: 'จัดส่งกี่วันถึงครับ?', sender: 'user' },
+    { id: 4, text: 'ยังมีของพร้อมส่งเลยค่ะ', sender: 'other' },
+    { id: 3, text: 'เช็กให้สักครู่นะคะ', sender: 'other' },
+    { id: 2, text: 'ตัวสีดำยังมีของไหมครับ?', sender: 'user' },
+    { id: 1, text: 'หวัดดีค่ะ สนใจตัวไหนคะ?', sender: 'other' },
+    { id: 0, text: 'หวัดดีครับ สอบถามเรื่องของหน่อย', sender: 'user' },
   ]);
 
 
