@@ -6,9 +6,9 @@ export async function POST(req: Request) {
   const { userId, message } = await req.json()
   try {
     const res = await axios.post(
-      'https://api.line.me/v2/bot/message/push',
+      'https://api.line.me/v2/bot/message/broadcast',
       {
-        to: userId,
+        //to: userId,
         messages: [{ type: 'text', text: message }],
       },
       {
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       text: message,
       createdAt: Date.now(),
       sender: "user",
-      userId: userId
+      //userId: userId
     });
     return NextResponse.json({ success: true })
   } catch (error: any) {

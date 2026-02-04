@@ -83,7 +83,7 @@ export default function Home() {
         Web Chat
       </Typography>
 
-      <Box sx={{
+      {/* <Box sx={{
         display: "flex",
         width: "300px",
         backgroundColor: "white",
@@ -111,15 +111,15 @@ export default function Home() {
         >
           Save
         </Button>
-      </Box>
+      </Box> */}
 
       <Container
         sx={{
           width: "300px",
           backgroundColor: "white",
           borderRadius: 1,
-          pointerEvents: `${disableChat === true ? "none" : "visible"}`,
-          opacity: `${disableChat === true ? 0.5 : 1}`
+          // pointerEvents: `${disableChat === true ? "none" : "visible"}`,
+          // opacity: `${disableChat === true ? 0.5 : 1}`
         }}
         disableGutters={true}
       >

@@ -15,7 +15,7 @@ export async function POST(request: Request) {
       text: event.message.text,
       createdAt: Date.now(),
       sender: "other",
-      userId: event.source.userId,
+      //userId: event.source.userId,
     });
   }
   return NextResponse.json({ ok: true });
