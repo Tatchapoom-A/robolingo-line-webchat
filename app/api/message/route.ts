@@ -1,11 +1,9 @@
 import { messages } from '@/lib/message';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  res.status(200).json(messages);
-  messages.length = 0;
+export async function GET() {
+    return NextResponse.json({ messages: messages });
 }
+

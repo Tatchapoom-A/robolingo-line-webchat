@@ -3,8 +3,8 @@ import axios from 'axios'
 
 export async function POST(req: Request) {
   const { userId, message } = await req.json()
-console.log("userID", userId);
-console.log("message", message);
+  console.log("userID", userId);
+  console.log("message", message);
   try {
     const res = await axios.post(
       'https://api.line.me/v2/bot/message/push',

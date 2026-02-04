@@ -26,11 +26,13 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      const res = await fetch('/api/messages');
-      const data = await res.json();
-      const newChatHistory = chatHistory;
-      newChatHistory.push({ id: newChatHistory.length, text: message, sender: "other" });
-      setChatHistory(newChatHistory);
+      const res = await axios.get('/api/messages');
+      console.log("useEffect");
+      console.log(res);
+      // const data = "";
+      // const newChatHistory = chatHistory;
+      // newChatHistory.push({ id: newChatHistory.length, text: message, sender: "other" });
+      // setChatHistory(newChatHistory);
     }, 3000);
 
     return () => clearInterval(interval);
