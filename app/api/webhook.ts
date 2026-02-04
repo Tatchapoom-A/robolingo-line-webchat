@@ -4,7 +4,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-
+    console.log("webhook request",req);
   if (req.method !== 'POST') {
     return res.status(405).end();
   }
