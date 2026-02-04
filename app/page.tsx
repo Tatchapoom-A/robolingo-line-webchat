@@ -32,7 +32,7 @@ export default function Home() {
         console.log("res", res);
         setChatHistory(res.data.messages);
       }
-    }, 5000);
+    }, 2500);
 
     return () => clearInterval(interval);
   }, [userId]);
@@ -46,13 +46,7 @@ export default function Home() {
         userId,
         message,
       })
-
       setMessage('');
-      // const newChatHistory = [...chatHistory];
-      // newChatHistory.push({ id: newChatHistory.length, text: message, sender: "user" });
-      // newChatHistory.sort((a, b) => b.id - a.id);
-      // setChatHistory(newChatHistory);
-
     } catch (err: any) {
       const msg =
         err.response?.data?.error?.message ||
