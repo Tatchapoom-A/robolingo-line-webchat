@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { Alert, Button, Container, TextareaAutosize, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { messages } from "@/lib/message";
 
 export default function Home() {
   const [error, setError] = useState<string | null>(null)
@@ -165,17 +166,6 @@ export default function Home() {
             Send
           </Button>
         </Box>
-        <Button
-            id="clear-chat-buton"
-            variant="contained"
-            sx={{ width: 300 }}
-            onClick={async () => {
-              
-            }}
-            disabled={chatHistory?.length === 0}
-          >
-            Clear Chat History
-        </Button>
         {error && (
           <Alert id="error-alert" severity="error">{error}</Alert>
         )}
