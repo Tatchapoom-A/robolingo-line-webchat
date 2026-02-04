@@ -26,13 +26,15 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      const res = await axios.get('/api/message');
-      console.log("res", res);
-      setChatHistory(res.data.messages);
+      if(userId !== ""){
+        const res = await axios.get('/api/message',{params:{userId: userId}});
+        console.log("res", res);
+        setChatHistory(res.data.messages);
+      }
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [userId]);
 
 
   const handleSend = async () => {
@@ -163,6 +165,17 @@ export default function Home() {
             Send
           </Button>
         </Box>
+        <Button
+            id="clear-chat-buton"
+            variant="contained"
+            sx={{ width: 300 }}
+            onClick={async () => {
+              
+            }}
+            disabled={chatHistory?.length === 0}
+          >
+            Clear Chat History
+        </Button>
         {error && (
           <Alert id="error-alert" severity="error">{error}</Alert>
         )}

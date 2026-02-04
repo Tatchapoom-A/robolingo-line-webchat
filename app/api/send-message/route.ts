@@ -21,7 +21,8 @@ export async function POST(req: Request) {
     messages.push({
       text: message,
       createdAt: Date.now(),
-      sender: "user"
+      sender: "user",
+      userId: userId
     });
     return NextResponse.json({ success: true })
   } catch (error: any) {

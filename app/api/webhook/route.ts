@@ -13,7 +13,8 @@ export async function POST(request: Request) {
     messages.push({
       text: event.message.text,
       createdAt: Date.now(),
-      sender: "other"
+      sender: "other",
+      userId: event.source.userId,
     });
   }
   return NextResponse.json({ ok: true });
