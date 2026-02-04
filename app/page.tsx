@@ -26,13 +26,19 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      const res = await axios.get('/api/messages');
-      console.log("useEffect");
+      console.log("get new message");
+      const res = await axios.get('/api/message');
+      console.log("log new message");
       console.log(res);
-      // const data = "";
-      // const newChatHistory = chatHistory;
-      // newChatHistory.push({ id: newChatHistory.length, text: message, sender: "other" });
-      // setChatHistory(newChatHistory);
+
+      const newChatHistory = [...chatHistory];
+      if (res.data.messages.length > 0) {
+        res.data.messages.forEach((m: { text: string; }) => {
+          newChatHistory.push({ id: newChatHistory.length, text: m.text, sender: "other" });
+        });
+      }
+      setChatHistory(newChatHistory);
+
     }, 3000);
 
     return () => clearInterval(interval);

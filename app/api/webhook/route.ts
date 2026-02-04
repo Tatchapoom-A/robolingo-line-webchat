@@ -11,7 +11,6 @@ export async function POST(request: Request) {
 
   if (event?.type === 'message' && event.message.type === 'text') {
     messages.push({
-      from: 'line',
       text: event.message.text,
       createdAt: Date.now(),
     });

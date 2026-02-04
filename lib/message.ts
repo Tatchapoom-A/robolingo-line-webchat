@@ -1,5 +1,4 @@
 export type ChatMessage = {
-  from: 'line' | 'web';
   text: string;
   createdAt: number;
 };

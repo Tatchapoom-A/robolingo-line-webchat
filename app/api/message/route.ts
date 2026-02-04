@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server';
 
 
 export async function GET() {
-    return NextResponse.json({ messages: messages });
+  const otherMessage = [...messages];
+  messages.length = 0;
+  return NextResponse.json({ messages: otherMessage });
 }
-
