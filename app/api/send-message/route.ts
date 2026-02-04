@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server'
 import axios from 'axios'
+import { messages } from '@/lib/message';
 
 export async function POST(req: Request) {
   const { userId, message } = await req.json()
-  console.log("userID", userId);
-  console.log("message", message);
   try {
     const res = await axios.post(
       'https://api.line.me/v2/bot/message/push',
@@ -19,7 +18,11 @@ export async function POST(req: Request) {
         },
       }
     )
-
+    messages.push({
+      text: message,
+      createdAt: Date.now(),
+      sender: "user"
+    });
     return NextResponse.json({ success: true })
   } catch (error: any) {
     console.error(error.response?.data || error.message)

@@ -7,7 +7,7 @@ interface MessageListProps {
 }
 
 export interface MessageData {
-    id: number;
+    createdAt: number;
     text: string;
     sender: 'user' | 'other';
 }
@@ -29,14 +29,11 @@ const Message: React.FC<MessageProps> = ({ text, sender }) => {
 };
 
 const MessageList: React.FC<MessageListProps> = (prop) => {
-
-    const [messages, setMessages] = useState<MessageData[]>(prop.chatHistory);
-
     return (
         <div id="message-list" className="message-list-container">
-            {messages.map((message) => (
+            {prop.chatHistory.map((message) => (
                 <Message
-                    key={message.id}
+                    key={message.createdAt}
                     text={message.text}
                     sender={message.sender}
                 />

@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 
 export async function GET() {
-  const otherMessage = [...messages];
-  messages.length = 0;
-  return NextResponse.json({ messages: otherMessage });
+  const allMessage = [...messages];
+  allMessage.sort((a,b) => b.createdAt - a.createdAt)
+  return NextResponse.json({ messages: allMessage });
 }

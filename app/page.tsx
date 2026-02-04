@@ -26,20 +26,10 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      console.log("get new message");
       const res = await axios.get('/api/message');
-      console.log("log new message");
-      console.log(res);
-
-      const newChatHistory = [...chatHistory];
-      if (res.data.messages.length > 0) {
-        res.data.messages.forEach((m: { text: string; }) => {
-          newChatHistory.push({ id: newChatHistory.length, text: m.text, sender: "other" });
-        });
-      }
-      setChatHistory(newChatHistory);
-
-    }, 3000);
+      console.log("res", res);
+      setChatHistory(res.data.messages);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -55,10 +45,10 @@ export default function Home() {
       })
 
       setMessage('');
-      const newChatHistory = chatHistory;
-      newChatHistory.push({ id: newChatHistory.length, text: message, sender: "user" });
-      newChatHistory.sort((a, b) => b.id - a.id);
-      setChatHistory(newChatHistory);
+      // const newChatHistory = [...chatHistory];
+      // newChatHistory.push({ id: newChatHistory.length, text: message, sender: "user" });
+      // newChatHistory.sort((a, b) => b.id - a.id);
+      // setChatHistory(newChatHistory);
 
     } catch (err: any) {
       const msg =
