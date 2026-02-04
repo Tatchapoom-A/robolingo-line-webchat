@@ -1,14 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== 'POST') {
-    return res.status(200).end();
-  }
-  console.log('Webhook called');
-  console.log(JSON.stringify(req.body, null, 2));
+export async function POST() {
+  console.log('Webhook POST called');
+  return NextResponse.json({ ok: true });
+}
 
-  res.status(200).json({ success: true });
+export async function GET() {
+  return NextResponse.json({ ok: true });
 }
