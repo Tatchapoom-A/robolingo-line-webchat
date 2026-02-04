@@ -27,11 +27,15 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      if(userId !== ""){
-        const res = await axios.get('/api/message',{params:{userId: userId}});
+      // if(userId !== ""){
+      //   const res = await axios.get('/api/message',{params:{userId: userId}});
+      //   console.log("res", res);
+      //   setChatHistory(res.data.messages);
+      // }
+
+      const res = await axios.get('/api/message',{params:{userId: userId}});
         console.log("res", res);
         setChatHistory(res.data.messages);
-      }
     }, 2500);
 
     return () => clearInterval(interval);
