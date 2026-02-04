@@ -10,6 +10,7 @@ export async function POST(request: Request) {
   const event = JSON.parse(rawBody).events[0];
 
   if (event?.type === 'message' && event.message.type === 'text') {
+    console.log("webhook", event);
     messages.push({
       text: event.message.text,
       createdAt: Date.now(),
