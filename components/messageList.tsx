@@ -1,15 +1,10 @@
-"use client"
+
+import { ChatMessage } from '@/lib/message';
 import { Box, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface MessageListProps {
-    chatHistory: MessageData[];
-}
-
-export interface MessageData {
-    createdAt: number;
-    text: string;
-    sender: 'user' | 'other';
+    chatHistory: ChatMessage[];
 }
 
 interface MessageProps {
