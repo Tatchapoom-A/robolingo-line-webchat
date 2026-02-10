@@ -1,4 +1,3 @@
-
 import { ChatMessage } from '@/lib/message';
 import { Box, Typography } from '@mui/material';
 import React from 'react';

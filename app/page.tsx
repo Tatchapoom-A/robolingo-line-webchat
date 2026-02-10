@@ -1,17 +1,10 @@
-
-
 import { ChatMessage } from "@/lib/message";
 import ChatClient from "@/components/ChatClient";
+import { messages } from '@/lib/message'
 
 export default async function Home() {
 
-  const res = await fetch('/api/message', {
-    cache: 'no-store',
-  })
-
-  const data: { messages: ChatMessage[] } = await res.json()
-
   return (
-    <ChatClient initialMessages={data.messages} />
+    <ChatClient initialMessages={messages} />
   )
 }
